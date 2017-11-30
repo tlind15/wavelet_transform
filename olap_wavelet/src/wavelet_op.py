@@ -1,7 +1,7 @@
 from prefix_sum import prefix_sum
-from power_of_2 import pad_zeros
+from pad_zeros import pad_zeros
 
-data = "C:/Users/tlindblom/Google Drive/CECS Classes/521 Database Architecture/test_big_text.txt"
+data = "C:/Users/tlindblom/Google Drive/CECS Classes/521 Database Architecture/big_text.txt"
 new_data = "C:/Users/tlindblom/Google Drive/CECS Classes/521 Database Architecture/test_prefix_sum.txt"
 
 pad_zeros(data)

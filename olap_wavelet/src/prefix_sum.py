@@ -1,3 +1,7 @@
+
+
+# determine the prefix sum of the array data
+# the kth element of the prefix sum array represents the aggregate sum of the first k elements of the original array
 def prefix_sum(original_array_file, new_array_file):
     original = open(original_array_file, 'r')  # the original array array data, with read permissions only
     new = open(new_array_file, 'w+')  # the file that will hold prefix sum data
