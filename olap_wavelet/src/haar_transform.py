@@ -1,4 +1,5 @@
 from pad_zeros import get_data_count
+from detail_coefficient_partition import select_coefficients
 import math
 
 def haar_transform(array_file):
@@ -6,7 +7,6 @@ def haar_transform(array_file):
     g = [0.5, -0.5]
 
     iteration_count = math.log(get_data_count(array_file),2)
-    print(iteration_count)
     array = open(array_file, "r")
     h_transform_array = []
     g_transform_array = []
@@ -45,10 +45,15 @@ def haar_transform(array_file):
             marker += 2
         del h_transform_array[:size]
 
-    print(h_transform_array)
-    return
+    return h_transform_array + g_transform_array
 
 
 data = "C:/Users/tlindblom/Google Drive/CECS Classes/521 Database Architecture/test_prefix_sum.txt"
-haar_transform(data)
+array_data = haar_transform(data)
+print(array_data[1:])
+temp_arr = select_coefficients(array_data[1:], 10)
+
+
+
+
 
