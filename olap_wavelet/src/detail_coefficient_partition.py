@@ -1,7 +1,7 @@
 import statistics
 
 
-def kth_largest_element(array, k):
+def kth_smallest_element(array, k):
     tally = k
     left_marker = None
     right_marker = None
@@ -39,37 +39,38 @@ def kth_largest_element(array, k):
                 right_marker_stop = True
 
             if left_marker_stop and right_marker_stop:
-                array[left_marker], array[right_marker] = array[right_marker], array[left_marker]
-                left_marker += 1
-                right_marker -= 1
+
+                if left_marker < size-1:
+                    array[left_marker], array[right_marker] = array[right_marker], array[left_marker]
+                    left_marker += 1
+                if right_marker > 0:
+                    right_marker -= 1
                 left_marker_stop = False
                 right_marker_stop = False
+
 
         #swap left marker with pivot
         array[left_marker], array[size-1] = array[size-1], array[left_marker]
 
-        if tally == size-left_marker:
+        if tally == left_marker+1:
             return array[left_marker]
 
-        elif size-1-left_marker >= tally:
-            del array[:left_marker+1]
+        elif left_marker >= tally:
+            del array[left_marker:]
 
         else:
-            del array[left_marker:]
-            tally -= size-left_marker
+            del array[:left_marker+1]
+            tally -= left_marker+1
 
 
 # we assume 'array' is an array of detail coefficients
 def select_coefficients(array, nums_of_coefficients):
     original_array = deep_copy(array)
-    cutoff_coefficient_value = kth_largest_element(array, nums_of_coefficients)
-    print(cutoff_coefficient_value)
+    cutoff_coefficient_value = kth_smallest_element(array, nums_of_coefficients)
     for x in range(len(original_array)):
-        if original_array[x] >= cutoff_coefficient_value:
+        if original_array[x] > cutoff_coefficient_value:
             original_array[x] = 0
 
-
-    print(original_array)
     return original_array
 
 

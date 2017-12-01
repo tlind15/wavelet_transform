@@ -50,10 +50,7 @@ def haar_transform(array_file):
 
 data = "C:/Users/tlindblom/Google Drive/CECS Classes/521 Database Architecture/test_prefix_sum.txt"
 array_data = haar_transform(data)
-print(array_data[1:])
-temp_arr = select_coefficients(array_data[1:], 10)
-
-
-
-
+print(array_data)
+temp_arr = select_coefficients(array_data[1:], 1)
+print(temp_arr)
 

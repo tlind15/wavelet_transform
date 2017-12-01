@@ -13,6 +13,9 @@ def read_append_test(file):
     append.close()
 
 
-data = "C:/Users/tlindblom/Google Drive/CECS Classes/521 Database Architecture/read_append.txt"
-read_append_test(data)
+x = [1,3]
+
+del x[1:]
+
+print(x)
 
