@@ -13,9 +13,4 @@ def read_append_test(file):
     append.close()
 
 
-x = [1,3]
-
-del x[1:]
-
-print(x)
-
+print(7//2)

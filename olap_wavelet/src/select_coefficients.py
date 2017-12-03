@@ -1,6 +1,20 @@
 import statistics
 
 
+# we assume 'array' is an array of detail coefficients
+def select_coefficients(array, nums_of_coefficients):
+    if nums_of_coefficients >= len(array):
+        return array
+
+    original_array = deep_copy(array)
+    cutoff_coefficient_value = kth_smallest_element(array, nums_of_coefficients)
+    for x in range(len(original_array)):
+        if original_array[x] > cutoff_coefficient_value:
+            original_array[x] = 0
+
+    return original_array
+
+
 def kth_smallest_element(array, k):
     tally = k
     left_marker = None
@@ -61,18 +75,6 @@ def kth_smallest_element(array, k):
         else:
             del array[:left_marker+1]
             tally -= left_marker+1
-
-
-# we assume 'array' is an array of detail coefficients
-def select_coefficients(array, nums_of_coefficients):
-    original_array = deep_copy(array)
-    cutoff_coefficient_value = kth_smallest_element(array, nums_of_coefficients)
-    for x in range(len(original_array)):
-        if original_array[x] > cutoff_coefficient_value:
-            original_array[x] = 0
-
-    return original_array
-
 
 def deep_copy(array):
     deep_copy = []
