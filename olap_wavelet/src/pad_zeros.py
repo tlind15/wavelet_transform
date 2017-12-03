@@ -11,7 +11,7 @@ def get_data_count(file):
     return count+1  # it enumerates from zero so you add 1 to get true count
 
 
-# the Haar transform works much nicer when the array size is a power of 2
+# the wavelet transform works much nicer when the array size is a power of 2
 # we can make our array size optimal by padding our current array with zeros
 
 # we want to find the closest number that is a power of 2 to our array size

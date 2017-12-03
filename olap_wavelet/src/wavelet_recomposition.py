@@ -11,7 +11,6 @@ def wavelet_recomposition(total_average, detail_coefficient_array):
         new_data_recomposition.append(new_data_recomposition[data_index] - coefficient)
         data_index += 1
 
-    #print(new_data_recomposition)
     return get_final_array(new_data_recomposition)
 
 

@@ -1,5 +1,3 @@
-from pad_zeros import get_data_count
-from select_coefficients import select_coefficients
 import math
 
 
@@ -10,11 +8,6 @@ def wavelet_decomposition(array):
     iteration_count = math.log(len(array),2)
     h_transform_array = []
     g_transform_array = []
-
-    element_i = None
-    element_i_plus_1 = None
-    average = None
-    detail_coefficient = None
 
     for y in range(0,len(array) - 1,2):
         element_i = array[y]

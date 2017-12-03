@@ -17,10 +17,6 @@ def select_coefficients(array, nums_of_coefficients):
 
 def kth_smallest_element(array, k):
     tally = k
-    left_marker = None
-    right_marker = None
-
-    left_marker_stop = False
     left_marker_stop = False
     right_marker_stop = False
 
