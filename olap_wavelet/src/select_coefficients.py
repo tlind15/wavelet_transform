@@ -2,6 +2,9 @@ import statistics
 
 
 # we assume 'array' is an array of detail coefficients
+# we want to keep the specified number of detail coefficients and make the rest equal to zero
+# if we know the kth largest magnitude coefficient, we can simply set all other smaller magnitude ones equal to zero
+# This will eventually allow an approximate array to be created from which faster querying will be possible
 def select_coefficients(array, nums_of_coefficients):
     if nums_of_coefficients >= len(array):
         return array
@@ -15,6 +18,11 @@ def select_coefficients(array, nums_of_coefficients):
     return original_array
 
 
+# in signal processing we know that the largest coefficients are a better indicator of the characteristics of a data set
+# we know that detail coefficients will have negative values
+# In this case, the "largest" coefficients are the most negative values (or ones with greatest magnitude)
+# We want to find the kth smallest coefficient value (or kth largest magnitude). See above for more.
+# We use the Quicksort partitioning algorithm to find the kth smallest element
 def kth_smallest_element(array, k):
     tally = k
     left_marker_stop = False
@@ -22,10 +30,12 @@ def kth_smallest_element(array, k):
 
     while True:
         size = len(array)
-        temp_arr = [array[0], array[size//2], array[size-1]]
-        pivot = statistics.median(temp_arr)
         left_marker = 0
         right_marker = size-2
+
+        # using median of 3 method for determining the pivot
+        temp_arr = [array[0], array[size // 2], array[size - 1]]
+        pivot = statistics.median(temp_arr)
 
         index_of_pivot = None
         if temp_arr.index(pivot) == 0:
@@ -37,6 +47,7 @@ def kth_smallest_element(array, k):
 
         array[index_of_pivot], array[size - 1] = array[size - 1], array[index_of_pivot]  # swap pivot with last element
 
+        # begin list partitioning
         while left_marker <= right_marker:
             if array[left_marker] <= pivot and left_marker <= right_marker:
                 left_marker += 1
@@ -62,16 +73,28 @@ def kth_smallest_element(array, k):
         #swap left marker with pivot
         array[left_marker], array[size-1] = array[size-1], array[left_marker]
 
+        # in each of the following, the 'left_marker' represents the number of elements less than the pivot value
+
+        # we know the pivot is larger than all values to the left of it
+        # thus if tally (or k) is the number of elements to the left of the pivot plus 1
+        # the pivot is the number we are looking for
         if tally == left_marker+1:
             return array[left_marker]
 
+        # if the number of elements smaller than the pivot is more than 'tally'
+        # we know that the element of interest must be to the left of the pivot
+        # thus we can delete all elements to the right of the pivot and the pivot itself
         elif left_marker >= tally:
             del array[left_marker:]
 
+        # if the number of elements smaller than the pivot is less than 'tally'
+        # then the element of interest must be to the right of the pivot
+        # thus we can delete all elements to the left of the pivot and the pivot itself
         else:
             del array[:left_marker+1]
             tally -= left_marker+1
 
+# a helper function for 'select_coefficients' that makes a deep copy of a list
 def deep_copy(array):
     deep_copy = []
     for num in array:
