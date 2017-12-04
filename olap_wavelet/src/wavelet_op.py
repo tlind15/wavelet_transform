@@ -24,15 +24,15 @@ def wavelet_transformation(data_file, coefficient_number):
     approximate_array = wavelet_recomposition(total_average, detail_coefficients)
 
     # print some values of interest to the user
-    print("The total average for that data is ", total_average)
-    print("The chosen detail coefficients are ", detail_coefficients)
-    print("The final array is ", approximate_array)
+    #print("The total average for that data is ", total_average)
+    #print("The chosen detail coefficients are ", detail_coefficients)
+    #print("The final array is ", approximate_array)
 
     return approximate_array
 
 
 # write the obtained array from the wavelet transformation to a specified file
-def write_transformed_array(array, destination_file):
+def write_array_to_file(array, destination_file):
 
     # "w+" will create the specified file if it does not already exist
     destination = open(destination_file,"w+")
