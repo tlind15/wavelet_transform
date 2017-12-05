@@ -6,11 +6,18 @@ import statistics
 # if we know the kth largest magnitude coefficient, we can simply set all other smaller magnitude ones equal to zero
 # This will eventually allow an approximate array to be created from which faster querying will be possible
 def select_coefficients(array, nums_of_coefficients):
+
+    if nums_of_coefficients < 1:
+        return None
+
     if nums_of_coefficients >= len(array):
         return array
 
     original_array = deep_copy(array)
     cutoff_coefficient_value = kth_smallest_element(array, nums_of_coefficients)
+    if cutoff_coefficient_value is None:
+        return None
+
     for x in range(len(original_array)):
         if original_array[x] > cutoff_coefficient_value:
             original_array[x] = 0
@@ -24,6 +31,13 @@ def select_coefficients(array, nums_of_coefficients):
 # We want to find the kth smallest coefficient value (or kth largest magnitude). See above for more.
 # We use the Quicksort partitioning algorithm to find the kth smallest element
 def kth_smallest_element(array, k):
+
+    if k < 1 or len(array) == 0:
+        return None
+
+    if len(array) == 1:
+        return array[0]
+
     tally = k
     left_marker_stop = False
     right_marker_stop = False

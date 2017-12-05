@@ -16,9 +16,12 @@ def get_data_count(file):
 
 # we want to find the closest number that is a power of 2 to our array size
 def nearest_power_of_two(count):
-    exact_pow = math.log(count, 2)
-    nearest_pow = math.ceil(exact_pow)
-    return pow(2,nearest_pow)
+    if count <= 0:
+        return 2
+    else:
+        exact_pow = math.log(count, 2)
+        nearest_pow = math.ceil(exact_pow)
+        return pow(2,nearest_pow)
 
 
 # determine how many zeros we need to pad to our current array
@@ -28,7 +31,7 @@ def num_zeroes_for_padding(count):
 
 # pad zeros to the array by appending the array data file
 def pad_zeros(file):
-    data = open(file, "a")
+    data = open(file, "a+")
     count = get_data_count(file)
     num_zeros_to_pad = num_zeroes_for_padding(count)
 

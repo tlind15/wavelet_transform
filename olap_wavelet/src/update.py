@@ -40,7 +40,7 @@ def wavelet_update_cost(original_wavelet_file, original_data_file, coefficient_n
     # number values in 'original_wavelet_array' that changed in 'updated_wavelet_array' as a result of the update
     update_cost = 0
     for i in range(len(original_wavelet_array)):
-        if (original_wavelet_array[i] == updated_wavelet_array[i]):
+        if original_wavelet_array[i] != updated_wavelet_array[i]:
             update_cost += 1
 
     return {"update cost": update_cost}

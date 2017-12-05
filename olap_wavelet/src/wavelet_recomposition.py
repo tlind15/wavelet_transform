@@ -6,6 +6,10 @@ from math import floor, log
 # Here we use those selected coefficients to reconstruct an approximation to the original prefix-sum array
 # this array will allow for faster querying than the original prefix-sum array
 def wavelet_recomposition(total_average, detail_coefficient_array):
+
+    if len(detail_coefficient_array) == 0:
+        return []  # because the next instruction after this in wavelet_op.py is a 'return'
+
     new_data_recomposition = [total_average]  # will hold the data that will generate the approximation
 
     # newly calculated data will be based off other data in the array
@@ -27,5 +31,8 @@ def wavelet_recomposition(total_average, detail_coefficient_array):
 
 # computes the first index where we expect the pertinent values to reside
 def get_final_array(recomposition_data):
-    first_number_index = 2**(floor(log(len(recomposition_data), 2))) - 1
-    return recomposition_data[first_number_index:]
+    if len(recomposition_data) == 0:
+        return []
+    else:
+        first_number_index = 2**(floor(log(len(recomposition_data), 2))) - 1
+        return recomposition_data[first_number_index:]

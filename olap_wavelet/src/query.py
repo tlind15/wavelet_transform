@@ -44,7 +44,7 @@ def read_file_into_array(data_file):
     file = open(data_file,"r")
     data = []
     for line in file:
-        data.append(int(line))
+        data.append(float(line))
 
     file.close()
     return data

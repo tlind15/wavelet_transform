@@ -4,6 +4,9 @@ import math
 # decompose the original data array into a single average and a list of detail coefficients
 def wavelet_decomposition(array):
 
+    if len(array) <= 2:
+        return array
+
     # h and g are two vectors developed by Alfred Haar form the Haar wavelet basis
     # This method will transform the data using this basis
     h = [0.5, 0.5]  # this vector essentially produces the average of two numbers
